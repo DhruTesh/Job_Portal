@@ -9,7 +9,7 @@ const Nav = () => {
             <div className="flex items-center space-x-4 pl-[20rem]">
                 <Link href="/" className="flex items-center space-x-2">
                     <img src="https://www.airtribe.live/_nuxt/img/main.6e304f5.svg" alt="Airtribe Logo" className="logo" />
-                    <span className="text-white text-3xl font-semibold">Airtribe</span>
+                    <span className="text-white text-3xl font-semibold">Airtribe </span>
                 </Link>
 
                 <div className="flex space-x-8 pl-10">
