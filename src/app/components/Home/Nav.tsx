@@ -17,7 +17,7 @@ const Nav = () => {
                     <Link href="/events" className="  text-lg text-white">Events</Link>
                     <Link href="/upskill" className="text-lg text-white">Upskill for free</Link>
                     <Link href="/reviews" className="text-lg text-white">Reviews</Link>
-                    <Link href="/jobboard" className="text-lg text-white">Job board</Link>
+                    <Link href="/jobboard" className="text-lg text-white">Job board </Link>
 
                 </div>
 
