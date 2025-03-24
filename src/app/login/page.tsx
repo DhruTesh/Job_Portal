@@ -66,7 +66,9 @@ const LoginPage = () => {
                 className="w-full p-3 border border-gray-300 rounded-lg" />
 
 
-              <Link href="/forgotpassword" className="text-sm item-center text-center text-gray-500 mt-6 cursor-pointer" >Forgot password?</Link>
+              <Link href="/forgotpassword" className="text-sm item-center text-center text-gray-500 mt-3 cursor-pointer" >Forgot password?</Link>
+
+              <button onClick={onLogin} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">Login</button>
             </form>
 
             <div className="flex items-center my-6">
