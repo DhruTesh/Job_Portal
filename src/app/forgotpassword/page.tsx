@@ -45,7 +45,7 @@ const ForgotPasswordPage = () => {
 
                 <div className="w-1/2 bg-white p-10 flex flex-col justify-center items-center">
                     <div className="w-full max-w-md">
-                        <h2 className="text-2xl font-bold mb-6 pl-10">forgot Password</h2>
+                        <h2 className="text-2xl font-bold mb-6 pl-10">Forgot Password</h2>
                         <div className="text-lg mb-6 pl-10">
                         <p>Please enter your email to receive</p>
                         <p className="font-semibold pl-10">one time OTP</p>
