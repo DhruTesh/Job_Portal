@@ -60,7 +60,7 @@ const Nav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState('');
 
-    const handleMenuClick = (menu) => {
+    const handleMenuClick = (menu: string) => {
         setActiveMenu(menu);
         setMenuOpen(false);
     };
