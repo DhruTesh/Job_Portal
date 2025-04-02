@@ -1,13 +1,15 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { FaArrowRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { Axios } from "axios";
+import  axios  from "axios";
+import toast from 'react-hot-toast';
 
 
-const SignUpPage = () => {
+export default function SignUpPage() {
 
+  const router = useRouter();
   const [user, setUser] = React.useState({
     username: "",
     email: "",
@@ -15,7 +17,32 @@ const SignUpPage = () => {
     number: "",
   });
 
-  const onSignup = async () => { }
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+
+  const onSignup = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/signup", user);
+      console.log("Signup response", response.data);
+      router.push("/login");
+
+
+    } catch (error:any) {
+      console.log("Signup failed",error.message);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0 && user.username.length > 0 && user.number.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
 
@@ -35,8 +62,8 @@ const SignUpPage = () => {
 
         {/* Right Section */}
         <div className="w-1/2 bg-white p-10 flex flex-col justify-center items-center">
-          <div className="w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6">Create account</h2>
+          <div className="w-full max-w-md ">
+            <h2 className="text-2xl pl-[6rem] font-bold mb-6">{loading ? "Loading..." : "Create account"}</h2>
             <form className="space-y-4">
 
               {/*username */}
@@ -79,7 +106,7 @@ const SignUpPage = () => {
               </div>
 
 
-              <button onClick={onSignup} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">Create Account</button>
+              <button onClick={onSignup} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">{buttonDisabled ? "No signup" : "Signup"}</button>
             </form>
 
 
@@ -115,4 +142,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+

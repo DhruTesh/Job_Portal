@@ -1,24 +1,47 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { FaArrowRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { Axios } from "axios";
+import axios from "axios";
+import toast from 'react-hot-toast';
 
 
 
-const LoginPage = () => {
+export default function LoginPage() {
+  const router = useRouter();
   const [user, setUser] = React.useState({
     email: "",
     password: "",
-  });
- 
+  })
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+
 
 
 
   const onLogin = async () => {
-
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/login", user);
+      console.log("Login response", response.data);
+      toast.success("Login successful");
+      router.push("/");
+    } catch (error: any) {
+      console.log("Login failed", error.message);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
 
@@ -41,7 +64,7 @@ const LoginPage = () => {
         {/* Right Section */}
         <div className="w-1/2 bg-white p-10 flex flex-col justify-center items-center">
           <div className="w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6 pl-10">Log in to your account</h2>
+            <h2 className="text-2xl font-bold mb-6 pl-10">{loading ? "Loading..." : "Log in to your account"}</h2>
             <div className="text-lg mb-6 pl-10">
               <p>Please enter your email and password</p>
 
@@ -104,4 +127,3 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
