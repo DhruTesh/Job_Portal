@@ -5,7 +5,8 @@ import { jobs } from "../../components/Job Board/data/jobs";
 import { Search, Bell } from "lucide-react";
 import { CiLocationOn, CiClock2 } from "react-icons/ci";
 import ProductManagerBanner from "./ProductManagerBanner";
-// import Footer from "./Footer";
+import Footer from "../Footer/Footer";
+import HiringForm from "../../components/HiringForm/HiringForm";
 
 // Define the type for job categories
 type Category = "product" | "engineering";
@@ -144,9 +145,11 @@ export default function JobList() {
                     />
 
                     {/* Post a Job Button */}
+                    <Link href="/HiringForm" target="_blank">
                     <button className="h-[40px] bg-[#683FBE] text-white px-5 rounded font-medium cursor-pointer">
                         Post a Job
                     </button>
+                    </Link>
                 </div>
             </div>
 
@@ -217,8 +220,8 @@ export default function JobList() {
                 ))}
             </div>
 
-            {/* Footer
-            <Footer /> */}
+            {/* Footer */}
+            <Footer />
 
         </div>
     );
