@@ -5,6 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 
 
 
@@ -91,7 +92,7 @@ export default function LoginPage() {
 
               <Link href="/forgotpassword" className="text-sm item-center text-center text-gray-500 mt-3 cursor-pointer" >Forgot password?</Link>
 
-              <button onClick={onLogin} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">Login</button>
+              <button onClick={onLogin} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">{buttonDisabled ? "No login" : "Login"}</button>
             </form>
 
             <div className="flex items-center my-6">
@@ -101,12 +102,12 @@ export default function LoginPage() {
             </div>
 
             {/* Google */}
-            <button className="w-full bg-white border border-gray-300 text-gray-700 p-3 rounded-lg flex items-center justify-center cursor-pointer">
+            <button  onClick={() => { signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL }) }} className="w-full bg-white border border-gray-300 text-gray-700 p-3 rounded-lg flex items-center justify-center cursor-pointer">
               <img src="https://e7.pngegg.com/pngimages/882/225/png-clipart-google-logo-google-logo-google-search-icon-google-text-logo-thumbnail.png" alt="Google logo" className="mr-2" width={20} height={20} />
               Continue with Google
             </button>
 
-            {/* LinkedIn */}
+            {/* LinkedIn 
             <button className="w-full bg-white border border-gray-300 text-gray-700 p-3 mt-3 rounded-lg flex items-center justify-center cursor-pointer">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
@@ -116,7 +117,7 @@ export default function LoginPage() {
                 height={20}
               />
               Continue with LinkedIn
-            </button>
+            </button>*/}
 
             <p className="text-sm text-center text-gray-500 mt-6">Already have an account? <Link href="/signup" className="text-blue-500">Sign Up</Link></p>
           </div>
