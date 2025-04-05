@@ -14,9 +14,12 @@
 =======
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
+    "better-auth": "^1.2.5",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.487.0",
     "mongoose": "^8.12.2",
     "next": "15.2.3",
+    "next-auth": "^4.24.11",
     "nodemailer": "^6.10.0",
 >>>>>>> origin/Dhrutesh
     "react": "^19.0.0",

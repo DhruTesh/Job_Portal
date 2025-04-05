@@ -2,9 +2,11 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { FaArrowRight } from "react-icons/fa";
-import { useRouter } from "next/navigation";
-import  axios  from "axios";
-import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
+import { FaEye } from "react-icons/fa";
 
 
 export default function SignUpPage() {
@@ -16,21 +18,27 @@ export default function SignUpPage() {
     password: "",
     number: "",
   });
+  const [showPassword, setShowPassword] = React.useState(false);
+
 
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  const onSignup = async () => {
+  const onSignup = async (e: React.FormEvent) => {
+    e.preventDefault(); // prevent default form submission
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
+      toast.success('Signup successful! Redirecting...');
+      <Toaster
+        position="top-right"
+        reverseOrder={true}
+      />
       console.log("Signup response", response.data);
       router.push("/login");
-
-
-    } catch (error:any) {
-      console.log("Signup failed",error.message);
-      toast.error(error.message);
+    } catch (error: any) {
+      console.log("Signup failed", error.message);
+      toast.error(error.response?.data?.message || 'Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -64,7 +72,7 @@ export default function SignUpPage() {
         <div className="w-1/2 bg-white p-10 flex flex-col justify-center items-center">
           <div className="w-full max-w-md ">
             <h2 className="text-2xl pl-[6rem] font-bold mb-6">{loading ? "Loading..." : "Create account"}</h2>
-            <form className="space-y-4">
+            <form onSubmit={onSignup} className="space-y-4">
 
               {/*username */}
               <input id="username"
@@ -83,12 +91,25 @@ export default function SignUpPage() {
                 className="w-full p-3 border border-gray-300 rounded-lg" />
 
               {/*password */}
-              <input id="password"
-                type="text"
-                value={user.password}
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                placeholder="Password"
-                className="w-full p-3 border border-gray-300 rounded-lg" />
+              {/* Password Input with Toggle */}
+              <div className="relative w-full">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={user.password}
+                  onChange={(e) => setUser({ ...user, password: e.target.value })}
+                  placeholder="Password"
+                  className="w-full p-3 pr-10 border border-gray-300 rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <FaEye size={20} /> : <FaEye size={20} />} {/* You can switch to FaEyeSlash if needed */}
+                </button>
+              </div>
+
 
               {/*number */}
               <div className="flex items-center border border-gray-300 rounded-lg">
@@ -105,8 +126,13 @@ export default function SignUpPage() {
                 <label htmlFor="whatsapp-updates" className="text-sm">Send me updates over WhatsApp</label>
               </div>
 
-
-              <button onClick={onSignup} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">{buttonDisabled ? "No signup" : "Signup"}</button>
+              {/* Submit Button */}
+              <button onClick={onSignup}
+                type="submit"
+                disabled={buttonDisabled}
+                className={`w-full ${buttonDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-purple-200 cursor-pointer'} text-purple-700 p-3 rounded-lg font-semibold`}>
+                {buttonDisabled ? "No signup" : "Signup"}
+              </button>
             </form>
 
 
@@ -117,12 +143,12 @@ export default function SignUpPage() {
             </div>
 
             {/* Google */}
-            <button className="w-full bg-white border border-gray-300 text-gray-700 p-3 rounded-lg flex items-center justify-center cursor-pointer">
+            <button onClick={() => { signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL }) }} className="w-full bg-white border border-gray-300 text-gray-700 p-3 rounded-lg flex items-center justify-center cursor-pointer">
               <img src="https://e7.pngegg.com/pngimages/882/225/png-clipart-google-logo-google-logo-google-search-icon-google-text-logo-thumbnail.png" alt="Google logo" className="mr-2" width={20} height={20} />
               Continue with Google
             </button>
 
-            {/* LinkedIn */}
+            {/* LinkedIn 
             <button className="w-full bg-white border border-gray-300 text-gray-700 p-3 mt-3 rounded-lg flex items-center justify-center cursor-pointer">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
@@ -132,7 +158,7 @@ export default function SignUpPage() {
                 height={20}
               />
               Continue with LinkedIn
-            </button>
+            </button> */}
 
             <p className="text-sm text-center text-gray-500 mt-6">Already have an account? <Link href="/login" className="text-blue-500">Login</Link></p>
           </div>

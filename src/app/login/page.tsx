@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { FaArrowRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
+import { FaEye } from "react-icons/fa";
 
 
 
@@ -14,18 +16,20 @@ export default function LoginPage() {
     email: "",
     password: "",
   })
+  const [showPassword, setShowPassword] = React.useState(false);
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
 
-
-
-  const onLogin = async () => {
+  const onLogin = async (e: React.FormEvent) => {
+    e.preventDefault(); // prevent default form submission
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
       console.log("Login response", response.data);
       toast.success("Login successful");
+
+
       router.push("/");
     } catch (error: any) {
       console.log("Login failed", error.message);
@@ -43,10 +47,13 @@ export default function LoginPage() {
     }
   }, [user]);
 
+
   return (
 
     <div className="flex min-h-screen bg-gray-100 justify-center items-center ">
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="border border-gray-300 rounded-lg shadow-lg overflow-hidden w-2/4 flex bg-white">
+
 
 
         {/* Left Section */}
@@ -71,7 +78,8 @@ export default function LoginPage() {
             </div>
 
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={onLogin}>
+
               {/*email */}
               <input id="email"
                 type="text"
@@ -81,17 +89,36 @@ export default function LoginPage() {
                 className="w-full p-3 border border-gray-300 rounded-lg" />
 
               {/*password */}
-              <input id="password"
-                type="text"
-                value={user.password}
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                placeholder="Password"
-                className="w-full p-3 border border-gray-300 rounded-lg" />
+              <div className="relative w-full">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={user.password}
+                  onChange={(e) => setUser({ ...user, password: e.target.value })}
+                  placeholder="Password"
+                  className="w-full p-3 pr-10 border border-gray-300 rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <FaEye size={20} /> : <FaEye size={20} />} {/* You can switch to FaEyeSlash if needed */}
+                </button>
+              </div>
 
 
               <Link href="/forgotpassword" className="text-sm item-center text-center text-gray-500 mt-3 cursor-pointer" >Forgot password?</Link>
 
-              <button onClick={onLogin} type="submit" className="w-full bg-purple-200 text-purple-700 p-3 rounded-lg font-semibold  cursor-pointer">Login</button>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={buttonDisabled}
+                className={`w-full ${buttonDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-purple-200 cursor-pointer'} text-purple-700 p-3 rounded-lg font-semibold`}>
+                {buttonDisabled ? "No login" : "Login"}
+              </button>
+
+
             </form>
 
             <div className="flex items-center my-6">
@@ -101,12 +128,12 @@ export default function LoginPage() {
             </div>
 
             {/* Google */}
-            <button className="w-full bg-white border border-gray-300 text-gray-700 p-3 rounded-lg flex items-center justify-center cursor-pointer">
+            <button onClick={() => { signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL }) }} className="w-full bg-white border border-gray-300 text-gray-700 p-3 rounded-lg flex items-center justify-center cursor-pointer">
               <img src="https://e7.pngegg.com/pngimages/882/225/png-clipart-google-logo-google-logo-google-search-icon-google-text-logo-thumbnail.png" alt="Google logo" className="mr-2" width={20} height={20} />
               Continue with Google
             </button>
 
-            {/* LinkedIn */}
+            {/* LinkedIn 
             <button className="w-full bg-white border border-gray-300 text-gray-700 p-3 mt-3 rounded-lg flex items-center justify-center cursor-pointer">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
@@ -116,7 +143,7 @@ export default function LoginPage() {
                 height={20}
               />
               Continue with LinkedIn
-            </button>
+            </button>*/}
 
             <p className="text-sm text-center text-gray-500 mt-6">Already have an account? <Link href="/signup" className="text-blue-500">Sign Up</Link></p>
           </div>
@@ -124,6 +151,7 @@ export default function LoginPage() {
 
       </div>
     </div>
+
   )
 }
 

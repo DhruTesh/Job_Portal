@@ -1,9 +1,16 @@
+'use client';
 import React from 'react'
 import Link from 'next/link';
 import { CiGift } from "react-icons/ci";
 import { FaArrowRight } from "react-icons/fa";
+import { useSession, signIn, signOut } from 'next-auth/react';
+import User from '@/helpers/user';
+import { Session } from 'next-auth';
+import ProgramsDropdown from './Navbar/ProgramsDropdown/page';
 
 const Nav = () => {
+    const { data: session, status } = useSession();
+
     return (
         <div className="w-auto h-16 flex items-center  p-4 bg-[rgb(23,20,33)]">
             <div className="flex items-center space-x-4 pl-[20rem]">
@@ -13,7 +20,7 @@ const Nav = () => {
                 </Link>
 
                 <div className="flex space-x-8 pl-10">
-                    <Link href="/programs" className="text-lg text-white">Programs</Link>
+                    <ProgramsDropdown />
                     <Link href="/events" className="  text-lg text-white">Events</Link>
                     <Link href="/upskill" className="text-lg text-white">Upskill for free</Link>
                     <Link href="/reviews" className="text-lg text-white">Reviews </Link>
@@ -27,20 +34,21 @@ const Nav = () => {
                     </div>
                 </div>
 
-                <div className="ml-4 flex">
-                    <Link href="/signup">
-
-                        <button className="bg-purple-600 text-white flex items-center gap-2 px-4 py-2 font-semibold rounded hover:bg-purple-700 opacity-100" >
-                            Sign up
-                            <FaArrowRight />
-
-                        </button>
-
-                    </Link>
-                </div>
-
+                {status === 'loading' ? null : session ? (
+            <User session={session as Session} />
+          ) : (
+            <button
+              className="bg-purple-600 text-white flex items-center gap-2 px-4 py-2 font-semibold rounded hover:bg-purple-700"
+              onClick={() => signIn()}
+            >
+              Login
+              <FaArrowRight />
+            </button>
+          )}
             </div>
+
         </div>
+
 
     );
 };
