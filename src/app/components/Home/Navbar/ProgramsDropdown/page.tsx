@@ -1,8 +1,8 @@
-'use client'; // If using in Next.js App Router
+'use client'; 
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react'; // Optional: For a cleaner dropdown arrow
+import { ChevronDown } from 'lucide-react'; 
 
 const programs = [
   { name: 'AI-First Product Management', href: '/courses/product-management-launchpad' },
