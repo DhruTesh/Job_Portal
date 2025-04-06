@@ -70,15 +70,16 @@ const Nav = () => {
             <div className="flex items-center w-full max-w-screen-xl mx-auto pl-4">
                 <Link href="/" className="flex items-center space-x-2">
                     <img src="https://www.airtribe.live/_nuxt/img/main.6e304f5.svg" alt="Airtribe Logo" className="logo" />
-                    <span className="text-white text-3xl font-semibold">Airtribe</span>
+                    <span className="text-white text-3xl font-semibold">Airtribe </span>
                 </Link>
 
-                <div className="hidden lg:flex items-center space-x-2 ml-8">
-                    <Link href="/programs" onClick={() => handleMenuClick('programs')} className={`text-lg px-3 py-1 rounded-lg ${activeMenu === 'programs' ? 'bg-[#3E335F] text-white' : 'text-white'}`}>Programs</Link>
-                    <Link href="/events" onClick={() => handleMenuClick('events')} className={`text-lg px-3 py-1 rounded-lg ${activeMenu === 'events' ? 'bg-[#3E335F] text-white' : 'text-white'}`}>Events</Link>
-                    <Link href="/upskill" onClick={() => handleMenuClick('upskill')} className={`text-lg px-3 py-1 rounded-lg ${activeMenu === 'upskill' ? 'bg-[#3E335F] text-white' : 'text-white'}`}>Upskill for free</Link>
-                    <Link href="/reviews" onClick={() => handleMenuClick('reviews')} className={`text-lg px-3 py-1 rounded-lg ${activeMenu === 'reviews' ? 'bg-[#3E335F] text-white' : 'text-white'}`}>Reviews</Link>
-                    <Link href="/Joblist" onClick={() => handleMenuClick('Joblist')} className={`text-lg px-3 py-1 rounded-lg ${activeMenu === 'Joblist' ? 'bg-[#3E335F] text-white' : 'text-white'}`}>Job board</Link>
+                <div className="flex space-x-8 pl-10">
+                    <Link href="/programs" className="text-lg text-white">Programs</Link>
+                    <Link href="/events" className="  text-lg text-white">Events</Link>
+                    <Link href="/upskill" className="text-lg text-white">Upskill for free</Link>
+                    <Link href="/reviews" className="text-lg text-white">Reviews </Link>
+                    <Link href="/jobboard" className="text-lg text-white">Job board</Link>
+
                 </div>
 
                 <div className="flex items-center gap-4 ml-auto">
