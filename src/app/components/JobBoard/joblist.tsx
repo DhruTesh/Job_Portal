@@ -4,9 +4,8 @@ import Link from "next/link";
 import { jobs } from "../../components/JobBoard/data/jobs";
 import { Search, Bell } from "lucide-react";
 import { CiLocationOn, CiClock2 } from "react-icons/ci";
-import ProductManagerBanner from "./ProductManagerBanner";
+import ProductManagerBanner from "./productmanagerbanner";
 import Footer from "../Footer/Footer";
-import HiringForm from "../../components/HiringForm/HiringForm";
 
 // Define the type for job categories
 type Category = "product" | "engineering";

@@ -19,12 +19,13 @@ const Nav = () => {
                     <span className="text-white text-3xl font-semibold">Airtribe </span>
                 </Link>
 
+                {/* Menu bar */}
                 <div className="flex space-x-8 pl-10">
                     <ProgramsDropdown />
                     <Link href="/events" className="  text-lg text-white">Events</Link>
                     <Link href="/upskill" className="text-lg text-white">Upskill for free</Link>
                     <Link href="/reviews" className="text-lg text-white">Reviews </Link>
-                    <Link href="/JobList" className="text-lg text-white">Job board</Link>
+                    <Link href="/jobboard" className="text-lg text-white">Job board</Link>
 
                 </div>
 
