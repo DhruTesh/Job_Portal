@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import Link from "next/link";
-import { jobs } from "../../components/Job Board/data/jobs";
+import { jobs } from "../../components/JobBoard/data/jobs";
 import { Search, Bell } from "lucide-react";
 import { CiLocationOn, CiClock2 } from "react-icons/ci";
 import ProductManagerBanner from "./ProductManagerBanner";
