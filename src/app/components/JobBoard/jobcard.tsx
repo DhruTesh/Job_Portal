@@ -1,4 +1,4 @@
-import { Job } from "../../components/Job Board/types/job";
+import { Job } from "../../components/JobBoard/types/job";
 
 interface JobCardProps {
   job: Job;

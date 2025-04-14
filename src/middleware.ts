@@ -9,14 +9,7 @@ export function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    '/',
-    '/profile',
-    '/login',
-    '/logout',
-    '/api/auth/[...nextauth]',
-    '/api/auth/callback/google',
-    '/signup',
-    '/forgotpassword',
+  
     
   ]
 }

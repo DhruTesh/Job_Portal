@@ -2,7 +2,7 @@ import { Mail, Phone, Linkedin, Youtube, Instagram, Twitter } from "lucide-react
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1A1328] text-white py-10">
+    <footer className="bg-[#221D32] text-white py-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
         <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
