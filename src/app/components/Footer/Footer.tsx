@@ -1,12 +1,18 @@
-import { Mail, Phone, Linkedin, Youtube, Instagram, Twitter } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Linkedin,
+  Youtube,
+  Instagram,
+  Twitter,
+} from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-[#221D32] text-white py-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
-        <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
-          
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center md:text-left">
           {/* Left Section */}
           <div>
             <div className="flex items-center justify-center md:justify-start mb-3">
@@ -16,6 +22,7 @@ export default function Footer() {
             <p className="text-sm text-gray-300">
               Transforming the way individuals learn and network for professional
             </p>
+
             {/* Social Icons */}
             <div className="flex justify-center md:justify-start gap-4 mt-4">
               <Linkedin className="cursor-pointer text-gray-400 hover:text-white" />
@@ -23,15 +30,18 @@ export default function Footer() {
               <Instagram className="cursor-pointer text-gray-400 hover:text-white" />
               <Twitter className="cursor-pointer text-gray-400 hover:text-white" />
             </div>
-            {/* Contact */}
-            <p className="mt-4 text-sm">
-              <Mail className="inline-block mr-2 text-gray-400" />
-              support@airtribe.live
-            </p>
-            <p className="text-sm">
-              <Phone className="inline-block mr-2 text-gray-400" />
-              +91 7204287636
-            </p>
+
+            {/* Contact Info */}
+            <div className="mt-4 space-y-1 text-sm">
+              <p>
+                <Mail className="inline-block mr-2 text-gray-400" />
+                support@airtribe.live
+              </p>
+              <p>
+                <Phone className="inline-block mr-2 text-gray-400" />
+                +91 7204287636
+              </p>
+            </div>
           </div>
 
           {/* Product Courses */}
@@ -55,8 +65,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources & Airtribe */}
-          <div className="flex flex-col md:flex-row md:gap-10">
+          {/* Resources + Airtribe (Stacked on mobile) */}
+          <div className="flex flex-col gap-10 sm:flex-row lg:flex-col">
             <div>
               <h3 className="text-lg font-semibold mb-3">RESOURCES</h3>
               <ul className="text-gray-400 space-y-2 text-sm">
@@ -85,7 +95,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="mt-10 border-t border-gray-700 pt-5 text-center text-gray-400 text-sm">
           <p>© 2025 Airtribe Inc.</p>
-          <div className="flex justify-center gap-4 mt-2">
+          <div className="flex flex-wrap justify-center gap-4 mt-2">
             <span className="hover:text-white cursor-pointer">Terms & Conditions</span>
             <span className="hover:text-white cursor-pointer">Privacy Policy</span>
             <span className="hover:text-white cursor-pointer">Refund Policy</span>
