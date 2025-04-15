@@ -8,6 +8,7 @@ import User from '@/helpers/user';
 import { Session } from 'next-auth';
 import ProgramsDropdown from './Navbar/ProgramsDropdown/page';
 
+
 const Nav = () => {
     const { data: session, status } = useSession();
 
@@ -24,7 +25,7 @@ const Nav = () => {
                     <Link href="/events" className="  text-lg text-white">Events</Link>
                     <Link href="/upskill" className="text-lg text-white">Upskill for free</Link>
                     <Link href="/reviews" className="text-lg text-white">Reviews </Link>
-                    <Link href="/jobboard" className="text-lg text-white">Job board</Link>
+                    <Link href="/jobportal" className="text-lg text-white">Job board</Link>
 
                 </div>
 

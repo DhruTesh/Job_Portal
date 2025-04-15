@@ -1,12 +1,12 @@
 'use client'
 import { useState } from "react";
 import Link from "next/link";
-import { jobs } from "../../components/Job Board/data/jobs";
+import { jobs } from "./data/jobs";
 import { Search, Bell } from "lucide-react";
 import { CiLocationOn, CiClock2 } from "react-icons/ci";
 import ProductManagerBanner from "./ProductManagerBanner";
-import Footer from "../Footer/Footer";
-import HiringForm from "../../components/HiringForm/HiringForm";
+import Footer from "../components/Footer/Footer";
+import HiringForm from "../components/HiringForm/HiringForm";
 
 // Define the type for job categories
 type Category = "product" | "engineering";

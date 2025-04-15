@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { JobCard } from "../../components/Job Board/JobCard";
+import JobCard from "../JobCard";
 import { Job } from "../types/job";
 
 export default function ProductJobs() {
