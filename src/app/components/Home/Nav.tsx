@@ -15,7 +15,6 @@ const Nav = () => {
 
 	const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 
-<<<<<<< HEAD
 	return (
 		<>
 			{/* Header */}
@@ -24,16 +23,8 @@ const Nav = () => {
 					{/* Logo */}
 					<Link href="/" className="flex items-center space-x-2">
 						<img src="https://www.airtribe.live/_nuxt/img/main.6e304f5.svg" alt="Airtribe Logo" className="logo w-6 h-6" />
-						<span className="text-white text-3xl font-semibold">Airtribe</span>
+						<span className="text-white text-3xl font-semibold">Airtribe Demo</span>
 					</Link>
-=======
-                <div className="flex space-x-8 pl-10">
-                    <ProgramsDropdown />
-                    <Link href="/events" className="  text-lg text-white">Events</Link>
-                    <Link href="/upskill" className="text-lg text-white">Upskill for free</Link>
-                    <Link href="/reviews" className="text-lg text-white">Reviews </Link>
-                    <Link href="/jobportal" className="text-lg text-white">Job board</Link>
->>>>>>> origin/Dhrutesh
 
 					{/* Desktop Menu */}
 					<div className="hidden md:flex space-x-8 pl-10">

@@ -1,20 +1,12 @@
 'use client'
 import { useState } from "react";
 import Link from "next/link";
-<<<<<<<< HEAD:src/app/components/JobBoard/joblist.tsx
 import { jobs } from "../../components/JobBoard/data/jobs";
 import { Search, Bell } from "lucide-react";
 import { CiLocationOn, CiClock2 } from "react-icons/ci";
 import ProductManagerBanner from "./productmanagerbanner";
 import Footer from "../Footer/Footer";
-========
-import { jobs } from "./data/jobs";
-import { Search, Bell } from "lucide-react";
-import { CiLocationOn, CiClock2 } from "react-icons/ci";
-import ProductManagerBanner from "./ProductManagerBanner";
-import Footer from "../components/Footer/Footer";
-import HiringForm from "../components/HiringForm/HiringForm";
->>>>>>>> origin/Dhrutesh:src/app/Job Board/JobList.tsx
+// import HiringForm from "../components/HiringForm/page.tsx";
 
 // Define the type for job categories
 type Category = "product" | "engineering";
